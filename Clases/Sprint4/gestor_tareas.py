@@ -31,8 +31,6 @@ def resumen(lista, por_dia):
         print(f"\n=== Resumen de Tareas ===")
         print(f"Tareas: {total} | Cerramdo {por_dia}/día -> Días mínimos: {dias}") 
 
-
-
 while True:
     mostrar_menu()
     opcion = input("Seleccione una opción: ")
