@@ -25,3 +25,26 @@ for clave, valor in empleado.items():
 
 empleado["salario_mensual"] = empleado["salario_mensual"] * 1.10
 print("Salario tras aumento: ", empleado["salario_mensual"])
+
+empleado["fecha_revisión"] = "2026-06-29"
+
+print(empleado)
+
+campo = input("Qué campo quieres consultar: ")
+
+if campo in empleado:
+    print(f"{campo}: {empleado[campo]}")
+else:
+    print(f"Este expediente no tiene el campo {campo}")
+
+print("teléfomo registrado: ", empleado.get("telefono", "No registrado"))
+
+print("Campos registrados", empleado.keys())
+print("Datos registrados", empleado.values())
+
+lista_campos = list(empleado.keys())
+print("Total de campos: ", len(lista_campos))
+print("Primer campo: ", lista_campos[0])
+
+for clave, valor in empleado.items():
+    print(f" {clave} : {valor}")
