@@ -1,27 +1,50 @@
-# Recursos Humanos imprime gafetes para los reclutas nuevos.
-# El sistema de registro les manda UNA línea de texto por persona, con los tres campos
-# separados por comas... y capturada como la capturó un humano 
-# con prisa:
+# =====================================================================
+#  gafete_referencia.py
+#  Sprint 5 - Clase 10 - Ejercicio corto "El Gafete"
+# =====================================================================
 
-pythonregistro_crudo = "  MARA   ibarra ,  saLUD  , 133750.5  "
+registro_crudo = "  MARA   ibarra ,  saLUD  , 133750.5  "
 
-# Tu programa debe imprimir el gafete limpio y formateado, # exactamente así:
+# Paso 1: partir por la coma
+pedazos = registro_crudo.split(",")
+# ['  MARA   ibarra ', '  saLUD  ', ' 133750.5  ']
 
-# ==================================================
-#  NOMBRE:   Mara Ibarra
-#  AREA:   Salud
-#  SALARIO:   133,750.50
-# ==================================================
+# Pasos 2-4: limpiar cada campo (reasignando SIEMPRE)
+nombre = pedazos[0].strip()
+nombre = nombre.replace("   ", " ")  # colapsa los 3 espacios internos
+nombre = nombre.title()  # Mara Ibarra
 
-pythonregistro = pythonregistro_crudo.strip()  # Elimina espacios al inicio y al final
-partes = pythonregistro.split(",")  # Separa los campos por comas
-nombre = partes[0].strip().title()  # Limpia y formatea el nombre
-nombre_limpio = nombre.replace("   ", " ")  # Quita los espacios
-area = partes[1].strip().title()  # Limpia y formatea el área
-salario = float(partes[2].strip())  # Limpia y convierte el salario a float
+area = pedazos[1].strip().title()  # Salud
 
-print("==================================================")
-print(f" NOMBRE: {nombre_limpio}")
-print(f" AREA: {area}")
-print(f" SALARIO: {salario:,.2f}")
-print("==================================================")
+# Paso 5: el salario llega como texto; limpiar y LUEGO convertir
+salario = float(pedazos[2].strip())  # 133750.5
+
+# Paso 6: el gafete
+print("=" * 50)
+print(f" NOMBRE: {nombre}")
+print(f" AREA:   {area}")
+print(f" SALARIO: {salario:>14,.2f}")
+print("=" * 50)
+
+# ---------------------------------------------------------------------
+#  STRETCH - referencia
+# ---------------------------------------------------------------------
+print()
+print("--- stretch: lote de gafetes ---")
+registros = [
+    "  MARA   ibarra ,  saLUD  , 133750.5  ",
+    "ana torres,finanzas,28500",
+    "  LUIS QUINTERO  , LOGISTICA , 19200.0 ",
+]
+
+for linea in registros:
+    pedazos = linea.split(",")
+    nombre = pedazos[0].strip().replace("   ", " ").title()
+    area = pedazos[1].strip().title()
+    salario = float(pedazos[2].strip())
+
+    print("=" * 50)
+    print(f" NOMBRE: {nombre}")
+    print(f" AREA:   {area}")
+    print(f" SALARIO: {salario:>14,.2f}")
+    print("=" * 50)
